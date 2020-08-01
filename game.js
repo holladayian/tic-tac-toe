@@ -16,8 +16,11 @@ class Game {
   gameBoardLogic(targetedSquare) {
     for (var i = 0; i < this.board.length; i++) {
       if ((targetedSquare.classList.contains(this.board[i])) && (targetedSquare.innerHTML === "")) {
-        console.log(this.board[i]);
-        this.whosTurn(targetedSquare)
+        // console.log(this.board[i]);
+        this.whosTurn(targetedSquare);
+        this.board[i] = this.turn;
+        this.checkWin()
+        // console.log(this.board[i]);
       }
     }
     // if (targetedSquare.innerHTML === "") {
@@ -51,7 +54,7 @@ class Game {
     updateDom(targetedSquare, "x")
   }
 
-  whoWon() {
+  checkWin() {
 
   }
 
