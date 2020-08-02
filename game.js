@@ -4,6 +4,7 @@ class Game {
     // this.player1 = new Player(1, "🤡");
     // this.player2 = new Player(2, "🔪");
     this.turn = true;
+    this.plays = 0;
     // this.winningBoards = [
     //    [true, true, true, this.board[3], this.board[4], this.board[5], this.board[6], this.board[7], this.board[8]],
     //    [this.board[0], this.board[1], this.board[2], true, true, true, this.board[6], this.board[7], this.board[8]],
@@ -16,36 +17,24 @@ class Game {
     //  ];
   }
 
-  // gameBoardLogic(targetedSquare) {
-  //   if (targetedSquare.innerHTML === "") {
-  //     console.log(targetedSquare);
-  //     this.whosTurn(targetedSquare)
-  //   }
-  // }
-
   gameBoardLogic(targetedSquare) {
     for (var i = 0; i < this.board.length; i++) {
       if ((targetedSquare.classList.contains(this.board[i])) && (targetedSquare.innerHTML === "")) {
-        // console.log(this.board[i]);
         this.whosTurn(targetedSquare);
         this.board[i] = this.turn;
-        this.updateWinningBoards(i);
-        this.checkWin()
-        // console.log(this.board[i]);
+        // this.updateWinningBoards(i);
+        this.checkWin(i);
       }
     }
-    // if (targetedSquare.innerHTML === "") {
-    //   this.whosTurn(targetedSquare)
-    // }
   }
 
-  updateWinningBoards(boardLoop) {
-    for (var j = 0; j < this.winningBoards.length; j++) {
-      if (this.winningBoards[j][boardLoop] !== true) {
-        this.winningBoards[j][boardLoop] = this.board[boardLoop]
-      }
-    }
-  }
+  // updateWinningBoards(boardLoop) {
+  //   for (var j = 0; j < this.winningBoards.length; j++) {
+  //     if (this.winningBoards[j][boardLoop] !== true) {
+  //       this.winningBoards[j][boardLoop] = this.board[boardLoop]
+  //     }
+  //   }
+  // }
 
   // check css to make sure board doesnt get overlayed
 
@@ -67,7 +56,7 @@ class Game {
     updateDom(targetedSquare, "x")
   }
 
-  checkWin() {
+  checkWin(boardLoop) {
     // console.log(this.board);
     // console.log(this.winningBoards[0]);
     // for (var i = 0; i < this.winningBoards.length; i++) {
@@ -84,11 +73,16 @@ class Game {
         (this.board[0] === this.board[4] && this.board[0] === this.board[8]) ||
         (this.board[6] === this.board[4] && this.board[6] === this.board[2])) {
       console.log('thats a w')
+    } else {
+      this.checkDraw(boardLoop)
     }
   }
 
-  isItADraw() {
-
+  checkDraw(boardLoop) {
+    this.plays++;
+    if (this.plays === 9) {
+      console.log('ya done goofed')
+    }
   }
 
   saveWinningBoard() {
