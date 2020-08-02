@@ -3,7 +3,17 @@ class Game {
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     // this.player1 = new Player(1, "🤡");
     // this.player2 = new Player(2, "🔪");
-    this.turn = true
+    this.turn = true;
+    this.winningBoards = [
+       [true, true, true, 0, 0, 0, 0, 0, 0],
+       [0, 0, 0, true, true, true, 0, 0, 0],
+       [0, 0, 0, 0, 0, 0, true, true, true],
+       [true, 0, 0, true, 0, 0, true, 0, 0],
+       [0, true, 0, 0, true, 0, 0, true, 0],
+       [0, 0, true, 0, 0, true, 0, 0, true],
+       [true, 0, 0, 0, true, 0, 0, 0, true],
+       [0, 0, true, 0, true, 0, true, 0, 0],
+     ];
   }
 
   // gameBoardLogic(targetedSquare) {
