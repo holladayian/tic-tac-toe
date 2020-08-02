@@ -17,9 +17,6 @@ class Game {
     ];
   }
 
-  // this doesn't separate the DOM from the data model
-  // switch targetedSquare out for checkClickLocation
-
   gameBoardLogic(checkClickLocation) {
     for (var i = 0; i < this.board.length; i++) {
       if (checkClickLocation.contains(this.board[i])) {
@@ -36,22 +33,10 @@ class Game {
   whosTurn() {
     if (this.turn) {
       this.turn = false;
-      // this.playO(targetedSquare);
     } else {
       this.turn = true;
-      // this.playX(targetedSquare);
     }
   }
-
-
-  // playO(targetedSquare) {
-  //   updateDom(targetedSquare, "o")
-  // }
-  //
-  // playX(targetedSquare) {
-  //   updateDom(targetedSquare, "x")
-  // }
-
 
   checkWin() {
     for (var i = 0; i < this.winningBoards.length; i++) {
@@ -60,16 +45,11 @@ class Game {
   }
 
   checkThreeVector(i) {
-      if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
-         this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
-        console.log('thats a w')
-      // } else {
-      //   this.checkDraw()
-      // }
+    if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
+       this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
+         return console.log('thats a w');
     }
   }
-
-
 
   checkDraw() {
     this.plays++;
