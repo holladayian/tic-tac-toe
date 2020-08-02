@@ -5,80 +5,73 @@ class Game {
     // this.player2 = new Player(2, "🔪");
     this.turn = true;
     this.plays = 0;
-    // this.winningBoards = [
-    //    [true, true, true, this.board[3], this.board[4], this.board[5], this.board[6], this.board[7], this.board[8]],
-    //    [this.board[0], this.board[1], this.board[2], true, true, true, this.board[6], this.board[7], this.board[8]],
-    //    [this.board[0], this.board[1], this.board[2], this.board[3], this.board[4], this.board[5], true, true, true],
-    //    [true, this.board[1], this.board[2], true, this.board[4], this.board[5], true, this.board[7], this.board[8]],
-    //    [this.board[0], true, this.board[2], this.board[3], true, this.board[5], this.board[6], true, this.board[8]],
-    //    [this.board[0], this.board[1], true, this.board[3], this.board[4], true, this.board[6], this.board[7], true],
-    //    [true, this.board[1], this.board[2], this.board[3], true, this.board[5], this.board[6], this.board[7], true],
-    //    [this.board[0], this.board[1], true, this.board[3], true, this.board[5], true, this.board[7], this.board[8]],
-    //  ];
+    this.winningBoards = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [6, 4, 2]
+    ];
   }
 
-  gameBoardLogic(targetedSquare) {
+  // this doesn't separate the DOM from the data model
+  // switch targetedSquare out for checkClickLocation
+
+  gameBoardLogic(checkClickLocation) {
     for (var i = 0; i < this.board.length; i++) {
-      if ((targetedSquare.classList.contains(this.board[i])) && (targetedSquare.innerHTML === "")) {
-        this.whosTurn(targetedSquare);
+      if (checkClickLocation.contains(this.board[i])) {
+        this.whosTurn();
+        // maybe swith true/false with this.player1.token/this.player2.token
         this.board[i] = this.turn;
-        // this.updateWinningBoards(i);
-        this.checkWin(i);
+        this.checkWin();
+        this.checkDraw()
+
       }
     }
   }
 
-  // updateWinningBoards(boardLoop) {
-  //   for (var j = 0; j < this.winningBoards.length; j++) {
-  //     if (this.winningBoards[j][boardLoop] !== true) {
-  //       this.winningBoards[j][boardLoop] = this.board[boardLoop]
-  //     }
-  //   }
-  // }
-
-  // check css to make sure board doesnt get overlayed
-
-  whosTurn(targetedSquare) {
+  whosTurn() {
     if (this.turn) {
       this.turn = false;
-      this.playO(targetedSquare);
+      // this.playO(targetedSquare);
     } else {
       this.turn = true;
-      this.playX(targetedSquare);
+      // this.playX(targetedSquare);
     }
   }
 
-  playO(targetedSquare) {
-    updateDom(targetedSquare, "o")
-  }
 
-  playX(targetedSquare) {
-    updateDom(targetedSquare, "x")
-  }
+  // playO(targetedSquare) {
+  //   updateDom(targetedSquare, "o")
+  // }
+  //
+  // playX(targetedSquare) {
+  //   updateDom(targetedSquare, "x")
+  // }
 
-  checkWin(boardLoop) {
-    // console.log(this.board);
-    // console.log(this.winningBoards[0]);
-    // for (var i = 0; i < this.winningBoards.length; i++) {
-    //   if (this.board === this.winningBoards[i]) {
-    //     console.log('thats a w')
-    //   }
-    // }
-    if ((this.board[0] === this.board[1] && this.board[0] === this.board[2]) ||
-        (this.board[3] === this.board[4] && this.board[3] === this.board[5]) ||
-        (this.board[6] === this.board[7] && this.board[6] === this.board[8]) ||
-        (this.board[0] === this.board[3] && this.board[0] === this.board[6]) ||
-        (this.board[1] === this.board[4] && this.board[1] === this.board[7]) ||
-        (this.board[2] === this.board[5] && this.board[2] === this.board[8]) ||
-        (this.board[0] === this.board[4] && this.board[0] === this.board[8]) ||
-        (this.board[6] === this.board[4] && this.board[6] === this.board[2])) {
-      console.log('thats a w')
-    } else {
-      this.checkDraw(boardLoop)
+
+  checkWin() {
+    for (var i = 0; i < this.winningBoards.length; i++) {
+      this.checkThreeVector(i)
     }
   }
 
-  checkDraw(boardLoop) {
+  checkThreeVector(i) {
+      if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
+         this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
+        console.log('thats a w')
+      // } else {
+      //   this.checkDraw()
+      // }
+    }
+  }
+
+
+
+  checkDraw() {
     this.plays++;
     if (this.plays === 9) {
       console.log('ya done goofed')

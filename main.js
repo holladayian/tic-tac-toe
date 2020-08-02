@@ -1,13 +1,4 @@
 var gameBoard = document.querySelector(".game-board");
-// var topLeft = document.querySelector(".top-left");
-// var topCenter = document.querySelector(".top-mid");
-// var topRight = document.querySelector(".top-right");
-// var midLeft = document.querySelector(".top-left");
-// var midCenter = document.querySelector(".top-left");
-// var midRight = document.querySelector(".top-left");
-// var bottomLeft = document.querySelector(".top-left");
-// var bottomCenter = document.querySelector(".top-left");
-// var bottomRight = document.querySelector(".top-left");
 
 var newGame = new Game();
 
@@ -24,5 +15,9 @@ function updateDom(targetedSquare, letter) {
 }
 
 function checkClickLocation(event) {
-  newGame.gameBoardLogic(event.target)
+  // create a variable that is an array that has all the elements of the classlist, call it clicked playedLocation (name this something that doesn't have something to do with the DOM)
+  // then you can still pass in that array and pass that array in at i
+  // newGame.board[i]
+  var playedLocation = event.target.classList;
+  newGame.gameBoardLogic(playedLocation)
 }
