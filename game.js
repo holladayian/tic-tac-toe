@@ -1,8 +1,8 @@
 class Game {
   constructor() {
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
-    // this.player1 = new Player(1, "🤡");
-    // this.player2 = new Player(2, "🔪");
+    this.player1 = new Player(1, "🤡");
+    this.player2 = new Player(2, "🔪");
     this.turn = true;
     this.plays = 0;
     this.winningBoards = [
