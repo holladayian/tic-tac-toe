@@ -4,16 +4,16 @@ class Game {
     // this.player1 = new Player(1, "🤡");
     // this.player2 = new Player(2, "🔪");
     this.turn = true;
-    this.winningBoards = [
-       [true, true, true, 0, 0, 0, 0, 0, 0],
-       [0, 0, 0, true, true, true, 0, 0, 0],
-       [0, 0, 0, 0, 0, 0, true, true, true],
-       [true, 0, 0, true, 0, 0, true, 0, 0],
-       [0, true, 0, 0, true, 0, 0, true, 0],
-       [0, 0, true, 0, 0, true, 0, 0, true],
-       [true, 0, 0, 0, true, 0, 0, 0, true],
-       [0, 0, true, 0, true, 0, true, 0, 0],
-     ];
+    // this.winningBoards = [
+    //    [true, true, true, this.board[3], this.board[4], this.board[5], this.board[6], this.board[7], this.board[8]],
+    //    [this.board[0], this.board[1], this.board[2], true, true, true, this.board[6], this.board[7], this.board[8]],
+    //    [this.board[0], this.board[1], this.board[2], this.board[3], this.board[4], this.board[5], true, true, true],
+    //    [true, this.board[1], this.board[2], true, this.board[4], this.board[5], true, this.board[7], this.board[8]],
+    //    [this.board[0], true, this.board[2], this.board[3], true, this.board[5], this.board[6], true, this.board[8]],
+    //    [this.board[0], this.board[1], true, this.board[3], this.board[4], true, this.board[6], this.board[7], true],
+    //    [true, this.board[1], this.board[2], this.board[3], true, this.board[5], this.board[6], this.board[7], true],
+    //    [this.board[0], this.board[1], true, this.board[3], true, this.board[5], true, this.board[7], this.board[8]],
+    //  ];
   }
 
   // gameBoardLogic(targetedSquare) {
@@ -29,6 +29,7 @@ class Game {
         // console.log(this.board[i]);
         this.whosTurn(targetedSquare);
         this.board[i] = this.turn;
+        this.updateWinningBoards(i);
         this.checkWin()
         // console.log(this.board[i]);
       }
@@ -38,12 +39,14 @@ class Game {
     // }
   }
 
+  updateWinningBoards(boardLoop) {
+    for (var j = 0; j < this.winningBoards.length; j++) {
+      if (this.winningBoards[j][boardLoop] !== true) {
+        this.winningBoards[j][boardLoop] = this.board[boardLoop]
+      }
+    }
+  }
 
-
-  // loop through this.board
-  // if targetedSquare.innerHTML.contains(this.gameboard[i]) {
-  // fuckin do some shit at i
-  // }
   // check css to make sure board doesnt get overlayed
 
   whosTurn(targetedSquare) {
@@ -65,7 +68,23 @@ class Game {
   }
 
   checkWin() {
-
+    // console.log(this.board);
+    // console.log(this.winningBoards[0]);
+    // for (var i = 0; i < this.winningBoards.length; i++) {
+    //   if (this.board === this.winningBoards[i]) {
+    //     console.log('thats a w')
+    //   }
+    // }
+    if ((this.board[0] === this.board[1] && this.board[0] === this.board[2]) ||
+        (this.board[3] === this.board[4] && this.board[3] === this.board[5]) ||
+        (this.board[6] === this.board[7] && this.board[6] === this.board[8]) ||
+        (this.board[0] === this.board[3] && this.board[0] === this.board[6]) ||
+        (this.board[1] === this.board[4] && this.board[1] === this.board[7]) ||
+        (this.board[2] === this.board[5] && this.board[2] === this.board[8]) ||
+        (this.board[0] === this.board[4] && this.board[0] === this.board[8]) ||
+        (this.board[6] === this.board[4] && this.board[6] === this.board[2])) {
+      console.log('thats a w')
+    }
   }
 
   isItADraw() {
