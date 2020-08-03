@@ -20,10 +20,7 @@ class Game {
   gameBoardLogic(checkClickLocation) {
     console.log(this.board);
     for (var i = 0; i < this.board.length; i++) {
-      // I think this still doesn't quite separate the DOM from the data model
-      // because checkClickLocation is in reference to an event
       if (checkClickLocation.contains(this.board[i])) {
-        // console.log(this.board);
         this.whosTurn();
         this.board[i] = this.turn;
         this.checkWin();
@@ -51,10 +48,9 @@ class Game {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
          console.log('ya done won');
-         // this.saveWinningBoard();
-         // window.setTimeout(this.resetBoard, 2000);
+         this.saveWinningBoard();
+         // add a set timeout to resetBoard somehow
          this.resetBoard();
-         this.saveWinningBoard()
     }
   }
 
@@ -62,7 +58,7 @@ class Game {
     this.plays++;
     if (this.plays === 9) {
       console.log('ya done goofed');
-      // window.setTimeout(this.resetBoard, 2000);
+      // add a set timeout to resetBoard somehow
       this.resetBoard()
     }
   }
@@ -80,7 +76,6 @@ class Game {
   resetBoard() {
     console.log("board reset run");
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
-    this.plays = 0
-    // console.log(this.board);
+    this.plays = 0;
   }
 }
