@@ -35,6 +35,7 @@ class Game {
     } else {
       this.turn = this.player2.token;
     }
+    displayTurn()
   }
 
   checkWin() {

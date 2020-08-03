@@ -1,6 +1,7 @@
 var gameBoard = document.querySelector(".game-board");
 var player1Wins = document.querySelector(".player-1-wins");
 var player2Wins = document.querySelector(".player-2-wins");
+var turnDecider = document.querySelector(".turn");
 
 var newGame = new Game();
 
@@ -22,4 +23,8 @@ function playToken() {
 function displayWin() {
   player1Wins.innerHTML = `${newGame.player1.wins} Wins`;
   player2Wins.innerHTML = `${newGame.player2.wins} Wins`;
+}
+
+function displayTurn() {
+  turnDecider.innerHTML = `${newGame.turn}s Turn!`
 }
