@@ -12,3 +12,7 @@ function checkClickLocation(event) {
   var playedLocation = event.target.classList;
   newGame.gameBoardLogic(playedLocation)
 }
+
+function displayWin(winnerToken) {
+
+}

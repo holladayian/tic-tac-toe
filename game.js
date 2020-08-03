@@ -1,9 +1,9 @@
 class Game {
   constructor() {
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
-    // this.player1 = new Player(1, "🤡");
-    // this.player2 = new Player(2, "🔪");
-    this.turn = true;
+    this.player1 = new Player(1, "🤡");
+    this.player2 = new Player(2, "🔪");
+    this.turn;
     this.plays = 0;
     this.winningBoards = [
       [0, 1, 2],
@@ -18,10 +18,10 @@ class Game {
   }
 
   gameBoardLogic(checkClickLocation) {
+    console.log(this.board);
     for (var i = 0; i < this.board.length; i++) {
       if (checkClickLocation.contains(this.board[i])) {
         this.whosTurn();
-        // maybe swith true/false with this.player1.token/this.player2.token
         this.board[i] = this.turn;
         this.checkWin();
         this.checkDraw()
@@ -31,10 +31,10 @@ class Game {
   }
 
   whosTurn() {
-    if (this.turn) {
-      this.turn = false;
+    if (this.turn === this.player2.token) {
+      this.turn = this.player1.token;
     } else {
-      this.turn = true;
+      this.turn = this.player2.token;
     }
   }
 
@@ -47,22 +47,35 @@ class Game {
   checkThreeVector(i) {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
-         return console.log('thats a w');
+         console.log('ya done won');
+         this.saveWinningBoard();
+         // add a set timeout to resetBoard somehow
+         this.resetBoard();
     }
   }
 
   checkDraw() {
     this.plays++;
     if (this.plays === 9) {
-      console.log('ya done goofed')
+      console.log('ya done goofed');
+      // add a set timeout to resetBoard somehow
+      this.resetBoard()
     }
   }
 
   saveWinningBoard() {
-
+    if (this.turn === this.player1.token) {
+      this.player1.saveWinsToStorage();
+      displayWin(this.player1.token)
+    } else {
+      this.player2.saveWinsToStorage()
+      displayWin(this.player2.token)
+    }
   }
 
   resetBoard() {
-
+    console.log("board reset run");
+    this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
+    this.plays = 0;
   }
 }
