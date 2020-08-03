@@ -1,4 +1,6 @@
 var gameBoard = document.querySelector(".game-board");
+var player1Wins = document.querySelector(".player-1-wins");
+var player2Wins = document.querySelector(".player-2-wins");
 
 var newGame = new Game();
 
@@ -10,9 +12,14 @@ function checkClickLocation(event) {
   // then you can still pass in that array and pass that array in at i
   // newGame.board[i]
   var playedLocation = event.target.classList;
-  newGame.gameBoardLogic(playedLocation)
+  newGame.gameBoardLogic(playedLocation);
 }
 
-function displayWin(winnerToken) {
+function playToken() {
 
+}
+
+function displayWin() {
+  player1Wins.innerHTML = `${newGame.player1.wins} Wins`;
+  player2Wins.innerHTML = `${newGame.player2.wins} Wins`;
 }

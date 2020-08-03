@@ -18,7 +18,6 @@ class Game {
   }
 
   gameBoardLogic(checkClickLocation) {
-    console.log(this.board);
     for (var i = 0; i < this.board.length; i++) {
       if (checkClickLocation.contains(this.board[i])) {
         this.whosTurn();
@@ -66,11 +65,12 @@ class Game {
   saveWinningBoard() {
     if (this.turn === this.player1.token) {
       this.player1.saveWinsToStorage();
-      displayWin(this.player1.token)
+      // displayWin(this.player1.token)
     } else {
       this.player2.saveWinsToStorage()
-      displayWin(this.player2.token)
+      // displayWin(this.player2.token)
     }
+    displayWin()
   }
 
   resetBoard() {
