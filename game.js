@@ -46,7 +46,12 @@ class Game {
   checkThreeVector(i) {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
-         return console.log('thats a w');
+         // return console.log('thats a w');
+         this.saveWinningBoard()
+         // i want to save a win
+         // update a DOM
+         // set a timeout
+         // resetboard
     }
   }
 
@@ -58,7 +63,11 @@ class Game {
   }
 
   saveWinningBoard() {
-
+    if (this.turn === this.player1.token) {
+      this.player1.saveWinsToStorage()
+    } else {
+      this.player2.saveWinsToStorage()
+    }
   }
 
   resetBoard() {
