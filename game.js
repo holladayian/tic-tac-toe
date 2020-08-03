@@ -50,9 +50,11 @@ class Game {
   checkThreeVector(i) {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
+         console.log('ya done won');
          // this.saveWinningBoard();
          // window.setTimeout(this.resetBoard, 2000);
-         this.resetBoard()
+         this.resetBoard();
+         this.saveWinningBoard()
     }
   }
 
