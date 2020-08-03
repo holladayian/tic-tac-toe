@@ -5,7 +5,7 @@ class Player {
     // this.win = win;
   }
   saveWinsToStorage() {
-
+    console.log(this.token)
   }
   retrieveWinsFromStorage() {
 
