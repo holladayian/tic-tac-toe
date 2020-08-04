@@ -7,29 +7,37 @@ var playableSpots = document.querySelectorAll(".square");
 var newGame = new Game();
 
 gameBoard.addEventListener("click", checkClickLocation);
-window.addEventListener("onload", displayWin());
+window.addEventListener("onload", updateWins());
 
 function checkClickLocation(event) {
   // create a variable that is an array that has all the elements of the classlist, call it clicked playedLocation (name this something that doesn't have something to do with the DOM)
   // then you can still pass in that array and pass that array in at i
   // newGame.board[i]
-  newGame.gameBoardLogic(event.target.id);
-  playToken(event.target);
+  if (!newGame.reset) {
+    newGame.gameBoardLogic(event.target.id);
+    playToken(event.target);
+  }
 
 }
 
 function playToken(clickLocation) {
   if (!clickLocation.innerHTML) {
     clickLocation.innerHTML = newGame.turn;
-    displayTurn()
+    // displayTurn()
   }
 }
 
-function displayWin() {
+function updateWins() {
   newGame.player1.retrieveWinsFromStorage();
   newGame.player2.retrieveWinsFromStorage();
   player1Wins.innerHTML = `${newGame.player1.wins} Wins`;
   player2Wins.innerHTML = `${newGame.player2.wins} Wins`;
+}
+
+function updateWinner(winner) {
+  turnDecider.innerHTML = `${winner} Won!`;
+  // window.setTimeout(displayTurn, 2000);
+
 }
 
 function displayTurn() {
@@ -40,4 +48,6 @@ function clearBoard() {
   for (var i = 0; i < playableSpots.length; i ++) {
     playableSpots[i].innerHTML = ''
   }
+  newGame.reset = false;
+  newGame.whosTurn()
 }

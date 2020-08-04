@@ -3,7 +3,8 @@ class Game {
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     this.player1 = new Player(1, "🤡");
     this.player2 = new Player(2, "🔪");
-    this.turn;
+    this.reset = false;
+    this.turn = this.player1.token;
     this.plays = 0;
     this.winningBoards = [
       [0, 1, 2],
@@ -30,10 +31,12 @@ class Game {
   }
 
   whosTurn() {
+    displayTurn();
     if (this.turn === this.player2.token) {
       this.turn = this.player1.token;
     } else {
       this.turn = this.player2.token;
+      // displayTurn(this.player1.token)
     }
     // displayTurn()
   }
@@ -49,6 +52,7 @@ class Game {
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
          console.log('ya done won');
          this.saveWinningBoard();
+         updateWinner(this.turn);
          this.resetBoard()
     }
   }
@@ -66,12 +70,13 @@ class Game {
     if (this.turn === this.player1.token) {
       this.player1.saveWinsToStorage();
     } else {
-      this.player2.saveWinsToStorage()
+      this.player2.saveWinsToStorage();
     }
-    displayWin()
+    updateWins()
   }
 
   resetBoard() {
+    this.reset = true;
     console.log("board reset run");
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     this.plays = 0;
