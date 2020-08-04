@@ -18,15 +18,13 @@ class Game {
   }
 
   gameBoardLogic(checkClickLocation) {
-    for (var i = 0; i < this.board.length; i++) {
-      if (checkClickLocation.contains(this.board[i])) {
+    var boardIndex = this.board.indexOf(checkClickLocation)
+    // for (var i = 0; i < this.board.length; i++) {
+    //   if (checkClickLocation.contains(this.board[i])) {
         this.whosTurn();
-        this.board[i] = this.turn;
+        this.board[boardIndex] = this.turn;
         this.checkWin();
         this.checkDraw()
-
-      }
-    }
   }
 
   whosTurn() {
@@ -35,7 +33,7 @@ class Game {
     } else {
       this.turn = this.player2.token;
     }
-    displayTurn()
+    // displayTurn()
   }
 
   checkWin() {
@@ -50,7 +48,7 @@ class Game {
          console.log('ya done won');
          this.saveWinningBoard();
          // add a set timeout to resetBoard somehow
-         this.resetBoard();
+         this.resetBoard()
     }
   }
 
@@ -60,6 +58,7 @@ class Game {
       console.log('ya done goofed');
       // add a set timeout to resetBoard somehow
       this.resetBoard()
+
     }
   }
 
