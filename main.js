@@ -12,6 +12,7 @@ gameBoard.addEventListener("click", checkClickLocation);
 
 
 function checkClickLocation(event) {
+  updateTurnDecider();
   if (!newGame.reset) {
     newGame.gameBoardLogic(event.target.id);
     updateBoard();
@@ -22,6 +23,9 @@ function checkClickLocation(event) {
   }
 }
 
+function updateTurnDecider() {
+  turnDecider.innerHTML = `${newGame.turn}s Turn`
+}
 
 
 function resetGame() {
