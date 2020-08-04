@@ -25,13 +25,16 @@ class Game {
       var boardIndex = this.board.indexOf(clickLocation);
       this.whosTurn();
       this.board[boardIndex] = this.turn;
-      this.checkWin();
-      this.checkDraw();
+
     }
   }
 
+  checkGameOver() {
+    this.checkWin();
+    this.checkDraw();
+  }
+
   whosTurn() {
-    displayTurn();
     if (this.turn === this.player2.token) {
       this.turn = this.player1.token;
     } else {
@@ -51,16 +54,14 @@ class Game {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
          this.saveWinningBoard();
-         updateWinner(this.turn);
-         this.resetBoard()
+         this.resetBoard();
     }
   }
 
   checkDraw() {
     this.plays++;
     if (this.plays === 9) {
-      console.log('ya done goofed');
-      this.resetBoard()
+      this.resetBoard();
 
     }
   }
@@ -71,18 +72,18 @@ class Game {
     } else {
       this.player2.saveWinsToStorage();
     }
-    updateWins()
   }
 
   resetBoard() {
     this.reset = true;
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
+
+  }
+
+  resetPlays() {
+    this.reset = false;
     this.plays = 0;
-    window.setTimeout(this.resetTimeout, 2000);
   }
-  resetTimeout() {
-    clearBoard(this.board);
-    newGame.reset = false;
-    console.log("🤡");
-  }
+
+
 }
