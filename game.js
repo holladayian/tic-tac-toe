@@ -77,5 +77,6 @@ class Game {
     console.log("board reset run");
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     this.plays = 0;
+    window.setTimeout(clearBoard, 2000);
   }
 }
