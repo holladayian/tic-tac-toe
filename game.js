@@ -6,6 +6,7 @@ class Game {
     this.reset = false;
     this.turn = this.player1.token;
     this.plays = 0;
+    this.winner;
     this.winningBoards = [
       [0, 1, 2],
       [3, 4, 5],
@@ -23,8 +24,8 @@ class Game {
   gameBoardLogic(clickLocation) {
     if (this.board.includes(clickLocation) && (!this.reset)) {
       var boardIndex = this.board.indexOf(clickLocation);
-      this.whosTurn();
       this.board[boardIndex] = this.turn;
+      this.whosTurn();
 
     }
   }
@@ -67,9 +68,11 @@ class Game {
   }
 
   saveWinningBoard() {
-    if (this.turn === this.player1.token) {
+    if (this.turn === this.player2.token) {
+      this.winner = this.player1.token;
       this.player1.saveWinsToStorage();
     } else {
+      this.winner = this.player2.token;
       this.player2.saveWinsToStorage();
     }
   }

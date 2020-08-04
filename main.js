@@ -12,13 +12,14 @@ gameBoard.addEventListener("click", checkClickLocation);
 
 
 function checkClickLocation(event) {
-  updateTurnDecider();
   if (!newGame.reset) {
     newGame.gameBoardLogic(event.target.id);
+    updateTurnDecider();
     updateBoard();
     newGame.checkGameOver();
   }
   if (newGame.reset) {
+    updateWinner();
     window.setTimeout(resetGame, 2000);
   }
 }
@@ -27,10 +28,16 @@ function updateTurnDecider() {
   turnDecider.innerHTML = `${newGame.turn}s Turn`
 }
 
+function updateWinner() {
+  turnDecider.innerHTML = `${newGame.winner} WINS`
+}
+
 
 function resetGame() {
   newGame.resetPlays();
   updateBoard();
+  updateTurnDecider();
+
 }
 
 function updateBoard() {
