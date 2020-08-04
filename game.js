@@ -3,7 +3,7 @@ class Game {
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     this.player1 = new Player(1, "🤡");
     this.player2 = new Player(2, "🔪");
-    this.reset = false;
+    this.complete = false;
     this.turn = this.player1.token;
     this.plays = 0;
     this.winner;
@@ -19,43 +19,45 @@ class Game {
     ];
   }
 
-  // findClickLocation()
-
   gameBoardLogic(clickLocation) {
-    if (this.board.includes(clickLocation) && (!this.reset)) {
+    if (this.board.includes(clickLocation)) {
       var boardIndex = this.board.indexOf(clickLocation);
       this.board[boardIndex] = this.turn;
-      this.whosTurn();
     }
   }
 
   checkGameOver() {
-    this.checkWin();
-    this.checkDraw();
+    if (!this.checkWin()) {
+      this.checkDraw();
+    }
   }
 
-  whosTurn() {
+  nextTurn() {
     if (this.turn === this.player2.token) {
       this.turn = this.player1.token;
     } else {
       this.turn = this.player2.token;
-      // displayTurn(this.player1.token)
     }
-    // displayTurn()
   }
 
   checkWin() {
     for (var i = 0; i < this.winningBoards.length; i++) {
-      this.checkThreeVector(i)
+      this.checkThreeVector(i);
     }
+    return this.complete
   }
 
   checkThreeVector(i) {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
-         this.saveWinningBoard();
-         this.resetBoard();
+         this.runWinCondish();
     }
+  }
+
+  runWinCondish() {
+    this.winner = this.turn;
+    this.saveWinningBoard();
+    this.resetBoard();
   }
 
   checkDraw() {
@@ -63,28 +65,24 @@ class Game {
     if (this.plays === 9) {
       this.winner = "NOBODY";
       this.resetBoard();
-
     }
   }
 
   saveWinningBoard() {
-    if (this.turn === this.player2.token) {
-      this.winner = this.player1.token;
+    if (this.turn === this.player1.token) {
       this.player1.saveWinsToStorage();
     } else {
-      this.winner = this.player2.token;
       this.player2.saveWinsToStorage();
     }
   }
 
   resetBoard() {
-    this.reset = true;
+    this.complete = true;
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
-
   }
 
   resetPlays() {
-    this.reset = false;
+    this.complete = false;
     this.plays = 0;
   }
 

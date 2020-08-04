@@ -6,23 +6,12 @@
   background-image: linear-gradient(red, orange, yellow, green, blue, indigo, violet);
 }
 
-.side-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 30%;
-}
-
 .center-section {
   margin-top: 65px;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 40%;
-  /* background-color: red;
-  background-image: linear-gradient(violet, indigo, blue, green, yellow, orange, red);
-  border: 10px solid black;
-  height: 600px; */
 }
 
 .game-board {
@@ -53,4 +42,11 @@
 
 .game-board > .bottom {
   border-bottom: none;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
 }

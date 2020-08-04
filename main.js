@@ -6,8 +6,8 @@ var playableSpots = document.querySelectorAll(".square");
 
 var newGame = new Game();
 
-gameBoard.addEventListener("click", checkClickLocation);
 window.addEventListener("onload", loadWins());
+gameBoard.addEventListener("click", checkClickLocation);
 
 function loadWins() {
   player1Wins.innerHTML = `${newGame.retrievePlayerWins(1)} Wins`;
@@ -16,17 +16,22 @@ function loadWins() {
 }
 
 function checkClickLocation(event) {
-  if (!newGame.reset) {
-    newGame.gameBoardLogic(event.target.id);
-    updateTurnDecider();
-    updateBoard();
-    newGame.checkGameOver();
+  if (!newGame.complete) {
+    makeMoves(event);
   }
-  checkToSeeIfWeNeedToResetTheGame()
+  checkToSeeIfWeNeedToResetTheGame();
+}
+
+function makeMoves(event) {
+  newGame.gameBoardLogic(event.target.id);
+  updateBoard();
+  newGame.checkGameOver();
+  newGame.nextTurn();
+  updateTurnDecider();
 }
 
 function checkToSeeIfWeNeedToResetTheGame() {
-  if (newGame.reset) {
+  if (newGame.complete) {
     loadWins();
     updateWinner();
     window.setTimeout(resetGame, 2000);
@@ -41,12 +46,10 @@ function updateWinner() {
   turnDecider.innerHTML = `${newGame.winner} WINS`
 }
 
-
 function resetGame() {
   newGame.resetPlays();
   updateBoard();
   updateTurnDecider();
-
 }
 
 function updateBoard() {
