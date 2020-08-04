@@ -44,10 +44,11 @@ function displayTurn() {
   turnDecider.innerHTML = `${newGame.turn}s Turn!`
 }
 
-function clearBoard() {
+function updateBoard(boardLayout) {
   for (var i = 0; i < playableSpots.length; i ++) {
-    playableSpots[i].innerHTML = ''
+    if (boardLayout[i].length > 1) {
+      playableSpots[i].innerHTML = ''
+    }
   }
-  newGame.reset = false;
   newGame.whosTurn()
 }

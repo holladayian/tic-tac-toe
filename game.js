@@ -18,15 +18,15 @@ class Game {
     ];
   }
 
-  gameBoardLogic(checkClickLocation) {
-    // var boardIndex = this.board.indexOf(checkClickLocation)
-    for (var i = 0; i < this.board.length; i++) {
-      if (checkClickLocation === this.board[i]) {
-        this.whosTurn();
-        this.board[i] = this.turn;
-        this.checkWin();
-        this.checkDraw()
-      }
+  // findClickLocation()
+
+  gameBoardLogic(clickLocation) {
+    if (this.board.includes(clickLocation) && (!this.reset)) {
+      var boardIndex = this.board.indexOf(clickLocation);
+      this.whosTurn();
+      this.board[boardIndex] = this.turn;
+      this.checkWin();
+      this.checkDraw();
     }
   }
 
@@ -50,7 +50,6 @@ class Game {
   checkThreeVector(i) {
     if (this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][1]] &&
        this.board[this.winningBoards[i][0]] === this.board[this.winningBoards[i][2]]) {
-         console.log('ya done won');
          this.saveWinningBoard();
          updateWinner(this.turn);
          this.resetBoard()
@@ -77,9 +76,13 @@ class Game {
 
   resetBoard() {
     this.reset = true;
-    console.log("board reset run");
     this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     this.plays = 0;
-    window.setTimeout(clearBoard, 2000);
+    window.setTimeout(this.resetTimeout, 2000);
+  }
+  resetTimeout() {
+    clearBoard(this.board);
+    newGame.reset = false;
+    console.log("🤡");
   }
 }
