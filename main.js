@@ -7,9 +7,13 @@ var playableSpots = document.querySelectorAll(".square");
 var newGame = new Game();
 
 gameBoard.addEventListener("click", checkClickLocation);
-// window.addEventListener("onload", updateWins());
+window.addEventListener("onload", loadWins());
 
-
+function loadWins() {
+  player1Wins.innerHTML = `${newGame.retrievePlayerWins(1)} Wins`;
+  player2Wins.innerHTML = `${newGame.retrievePlayerWins(2)} Wins`;
+  updateTurnDecider();
+}
 
 function checkClickLocation(event) {
   if (!newGame.reset) {
@@ -18,7 +22,12 @@ function checkClickLocation(event) {
     updateBoard();
     newGame.checkGameOver();
   }
+  checkToSeeIfWeNeedToResetTheGame()
+}
+
+function checkToSeeIfWeNeedToResetTheGame() {
   if (newGame.reset) {
+    loadWins();
     updateWinner();
     window.setTimeout(resetGame, 2000);
   }

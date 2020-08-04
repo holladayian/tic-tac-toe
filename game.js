@@ -26,7 +26,6 @@ class Game {
       var boardIndex = this.board.indexOf(clickLocation);
       this.board[boardIndex] = this.turn;
       this.whosTurn();
-
     }
   }
 
@@ -62,6 +61,7 @@ class Game {
   checkDraw() {
     this.plays++;
     if (this.plays === 9) {
+      this.winner = "NOBODY";
       this.resetBoard();
 
     }
@@ -88,5 +88,13 @@ class Game {
     this.plays = 0;
   }
 
-
+  retrievePlayerWins(id) {
+    if (id === 1) {
+      this.player1.retrieveWinsFromStorage();
+      return this.player1.wins;
+    } else {
+      this.player2.retrieveWinsFromStorage();
+      return this.player2.wins;
+    }
+  }
 }
