@@ -17,29 +17,6 @@ function loadWins() {
   player1Wins.innerHTML = `${player1WinList.length} Wins`;
   player2Wins.innerHTML = `${player2WinList.length} Wins`;
   updateTurnDecider();
-  addMiniBoard(player1WinList, player1Wins);
-  addMiniBoard(player2WinList, player2Wins);
-}
-
-function addMiniBoard(playerWins, playerBoard) {
-  for (var i = 0; i < playerWins.length; i++) {
-    if (playerWins[i].length === 2) {
-      playerBoard.insertAdjacentHTML('afterbegin',
-      `
-      <section class="mini-board">
-        <section class="top left square">${playerWins[i][0]}</section>
-        <section class="top square">${playerWins[i][1]}</section>
-        <section class="top right square">${playerWins[i][2]}</section>
-        <section class="left square">${playerWins[i][3]}</section>
-        <section class="square">${playerWins[i][4]}</section>
-        <section class="right square">${playerWins[i][5]}</section>
-        <section class="bottom left square">${playerWins[i][6]}</section>
-        <section class="bottom square">${playerWins[i][7]}</section>
-        <section class="bottom right square">${playerWins[i][8]}</section>
-      </section>
-      `)
-    }
-  }
 }
 
 function checkClickLocation(event) {

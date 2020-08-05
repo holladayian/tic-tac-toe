@@ -20,9 +20,8 @@ class Game {
   }
 
   gameBoardLogic(clickLocation) {
-    if (this.board.includes(clickLocation)) {
+    if (this.board.includes(clickLocation) && (!this.complete)) {
       var boardIndex = this.board.indexOf(clickLocation);
-      console.log(this.board);
       this.board[boardIndex] = this.turn;
       this.checkGameOver();
       this.nextTurn();
@@ -60,14 +59,14 @@ class Game {
   runWinCondish() {
     this.winner = this.turn;
     this.saveWinningBoard();
-    this.resetBoard();
+    this.completeGame();
   }
 
   checkDraw() {
     this.plays++;
     if (this.plays === 9) {
       this.winner = "NOBODY";
-      this.resetBoard();
+      this.completeGame();
     }
   }
 
@@ -79,12 +78,12 @@ class Game {
     }
   }
 
-  resetBoard() {
+  completeGame() {
     this.complete = true;
-    this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
   }
 
   resetPlays() {
+    this.board = ["top-left", "top-center", "top-right", "mid-left", "mid-center", "mid-right", "bottom-left", "bottom-center", "bottom-right"];
     this.complete = false;
     this.plays = 0;
   }
