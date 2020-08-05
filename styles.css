@@ -50,3 +50,19 @@
   align-items: center;
   width: 30%;
 }
+
+.mini-board {
+  display: grid;  margin-top: 10px;
+  justify-content: center;
+  grid-template-columns: 45px 45px 45px;
+  grid-template-rows: 45px 45px 45px;
+  scroll-snap-type: y mandatory;
+}
+
+.mini-board > section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  scroll-snap-align: start;
+}
