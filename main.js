@@ -5,6 +5,7 @@ var turnDecider = document.querySelector(".turn");
 var playableSpots = document.querySelectorAll(".square");
 
 var newGame = new Game();
+var finishReset = true;
 
 window.addEventListener("onload", loadWins());
 gameBoard.addEventListener("click", checkClickLocation);
@@ -29,7 +30,8 @@ function makeMoves(event) {
 }
 
 function checkToSeeIfWeNeedToResetTheGame() {
-  if (newGame.complete) {
+  if (newGame.complete && finishReset) {
+    finishReset = false;
     loadWins();
     updateWinner();
     window.setTimeout(resetGame, 2000);
@@ -45,6 +47,7 @@ function updateWinner() {
 }
 
 function resetGame() {
+  finishReset = true;
   newGame.resetPlays();
   updateBoard();
   updateTurnDecider();
