@@ -89,10 +89,10 @@ class Game {
   retrievePlayerWins(id) {
     if (id === 1) {
       this.player1.retrieveWinsFromStorage();
-      return this.player1.wins;
+      return this.player1.wins.length;
     } else {
       this.player2.retrieveWinsFromStorage();
-      return this.player2.wins;
+      return this.player2.wins.length;
     }
   }
 }

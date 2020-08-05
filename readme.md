@@ -42,11 +42,11 @@ For this project, we were required to make a working tic-tac-toe game from scrat
 https://github.com/holladayian -Ian Holladay  
 
 ## Images
-This is an image of halfway through a game. You can see it it will show you who's current turn it is.<br />
-![image of who's turn being displayed](/assets/turn.png)<br />
+This is an image of halfway through a game. You can see it it will show you who's current turn it is.<br />  
+![image of who's turn being displayed](/assets/turn.png)<br />  
 
-This is an image of a winning game. You can show it updates the DOM with the winning player's token.<br />
-![image of a winning game](/assets/win.png)<br />
+This is an image of a winning game. You can show it updates the DOM with the winning player's token.<br />  
+![image of a winning game](/assets/win.png)<br />  
 
 #### Project spec & rubric can be found here:
 https://frontend.turing.io/projects/module-1/tic-tac-toe-solo.html
