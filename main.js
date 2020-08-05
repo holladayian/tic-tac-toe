@@ -10,8 +10,8 @@ window.addEventListener("onload", loadWins());
 gameBoard.addEventListener("click", checkClickLocation);
 
 function loadWins() {
-  player1Wins.innerHTML = `${newGame.retrievePlayerWins(1)} Wins`;
-  player2Wins.innerHTML = `${newGame.retrievePlayerWins(2)} Wins`;
+  player1Wins.innerHTML = `${newGame.retrievePlayerWins(1).length} Wins`;
+  player2Wins.innerHTML = `${newGame.retrievePlayerWins(2).length} Wins`;
   updateTurnDecider();
 }
 
@@ -25,8 +25,6 @@ function checkClickLocation(event) {
 function makeMoves(event) {
   newGame.gameBoardLogic(event.target.id);
   updateBoard();
-  newGame.checkGameOver();
-  newGame.nextTurn();
   updateTurnDecider();
 }
 
