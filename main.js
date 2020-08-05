@@ -3,8 +3,6 @@ var player1Wins = document.querySelector(".player-1-wins");
 var player2Wins = document.querySelector(".player-2-wins");
 var turnDecider = document.querySelector(".turn");
 var playableSpots = document.querySelectorAll(".square");
-var player1Boards = document.querySelectorAll(".player-1-boards");
-var player2Boards = document.querySelectorAll(".player-2-boards");
 
 var newGame = new Game();
 
@@ -12,10 +10,8 @@ window.addEventListener("onload", loadWins());
 gameBoard.addEventListener("click", checkClickLocation);
 
 function loadWins() {
-  var player1WinList = newGame.retrievePlayerWins(1);
-  var player2WinList = newGame.retrievePlayerWins(2);
-  player1Wins.innerHTML = `${player1WinList.length} Wins`;
-  player2Wins.innerHTML = `${player2WinList.length} Wins`;
+  player1Wins.innerHTML = `${newGame.retrievePlayerWins(1).length} Wins`;
+  player2Wins.innerHTML = `${newGame.retrievePlayerWins(2).length} Wins`;
   updateTurnDecider();
 }
 
