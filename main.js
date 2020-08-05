@@ -15,7 +15,7 @@ function loadWins() {
   var player1WinList = newGame.retrievePlayerWins(1);
   var player2WinList = newGame.retrievePlayerWins(2);
   player1Wins.innerHTML = `${player1WinList.length} Wins`;
-  player2Wins.innerHTML = `${player1WinList.length} Wins`;
+  player2Wins.innerHTML = `${player2WinList.length} Wins`;
   updateTurnDecider();
   addMiniBoard(player1WinList, player1Wins);
   addMiniBoard(player2WinList, player2Wins);
@@ -23,7 +23,7 @@ function loadWins() {
 
 function addMiniBoard(playerWins, playerBoard) {
   for (var i = 0; i < playerWins.length; i++) {
-    // if (playerWins[i].length === 2) {
+    if (playerWins[i].length === 2) {
       playerBoard.insertAdjacentHTML('afterbegin',
       `
       <section class="mini-board">
@@ -38,7 +38,7 @@ function addMiniBoard(playerWins, playerBoard) {
         <section class="bottom right square">${playerWins[i][8]}</section>
       </section>
       `)
-    // }
+    }
   }
 }
 
