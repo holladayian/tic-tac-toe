@@ -2,8 +2,8 @@
 ## Solo Project Ian Holladay
 Turing's 2006FE mod1 final project
 
-## The is a private project, but you can contact me here:
-https://github.com/holladayian -Ian Holladay  
+## Here's a link to the published site
+[Tic-Tac-Toe](https://holladayian.github.io/tic-tac-toe/index.html)  
 
 ## Project Overview
 For this project, we were required to make a working tic-tac-toe game from scratch. For this we used Javascript, HTML and CSS. To build this project we needed a few things:
