@@ -5,6 +5,10 @@ Turing's 2006FE mod1 final project
 ## Here's a link to the published site
 [Tic-Tac-Toe](https://holladayian.github.io/tic-tac-toe/index.html)  
 
+
+## Contact me on GitHub at:
+[@holladayian](https://github.com/holladayian)
+
 ## Project Overview
 For this project, we were required to make a working tic-tac-toe game from scratch. For this we used Javascript, HTML and CSS. To build this project we needed a few things:
 - A player.js file that contains a Player class
@@ -37,9 +41,6 @@ For this project, we were required to make a working tic-tac-toe game from scrat
 ## Challenges
 - I built the HTML and CSS first. This is okay, as long as you don't hook up the DOM and data model until you're done with both
 - There was a lot of outside pressure on this project that made the timing difficult as well. I'm glad it turned out all right
-
-### Contact me on GitHub at:
-https://github.com/holladayian -Ian Holladay  
 
 ## Images
 This is an image of halfway through a game. You can see it it will show you who's current turn it is.<br />  
